@@ -85,7 +85,9 @@ class _MyHealthState extends State<MyHealth> {
                           color: test.result >= 0 && test.result <= 13
                               ? Colors.green.shade400
                               : test.result > 13 && test.result < 27
+
                                   ? Colors.amber.shade500
+
                                   : Colors.red.shade400,
                           borderRadius: BorderRadius.circular(5.0),
                           boxShadow: [

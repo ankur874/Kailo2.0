@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kailo/Screens/home_screen.dart';
 import 'package:kailo/resources/authentication.dart';
 import 'package:kailo/utils/constants.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 
 class EditUserSettings extends StatefulWidget {
   @override
@@ -226,7 +226,8 @@ class _EditUserSettingsState extends State<EditUserSettings> {
                   GestureDetector(
                     onTap: () {
                       editUserDetails();
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HomeScreen()));
                     },
                     child: Container(
                       decoration: BoxDecoration(

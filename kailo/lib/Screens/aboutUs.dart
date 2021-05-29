@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatefulWidget {
-
   @override
   _AboutUsState createState() => _AboutUsState();
 }
@@ -21,11 +20,14 @@ class _AboutUsState extends State<AboutUs> {
             Align(
               alignment: Alignment.topCenter,
               widthFactor: 1.5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 30.0,
+              child: InkWell(
+                onTap: () => Navigator.pop(context),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 30.0,
+                  ),
                 ),
               ),
             ),

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String name = "";
+  String profilePhoto;
+  String email = "";
   final _controller = PageController();
   int pageIndex = 0;
   @override
@@ -23,33 +28,81 @@ class _HomeScreenState extends State<HomeScreen> {
     _controller.dispose();
     super.dispose();
   }
+
+  Future<void> currentUser() async {
+    try {
+      User curr = await getCurrentUser();
+      var data = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(curr.uid)
+          .get();
+
+      this.setState(() {
+        if (curr.displayName != null) {
+          name = curr.displayName.split(" ")[0];
+          profilePhoto = data.data()["profile_photo"];
+          email = data.data()["email"];
+          print("---------------------------------------------------");
+          print(data.data());
+        } else {
+          name = "";
+        }
+      });
+    } catch (err) {
+      print("err");
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    currentUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     return MaterialApp(
       home: Scaffold(
-        drawer: new Drawer(
-          child: new ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              SizedBox(
-                height: 60,
-              ),
-              ListTile(
-                title: Text('About Us'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutUs()));
-                },
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              ListTile(
-                title: Text('Logout'),
-                onTap: () => signOutUser().then(
-                  (value) => Navigator.pop(context),
+        endDrawer: Drawer(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 0,
+                child: Container(
+                  child: UserAccountsDrawerHeader(
+                    accountName: Text(name),
+                    accountEmail: Text(email),
+                    currentAccountPicture: CircleAvatar(
+                      radius: 250.0,
+                      backgroundImage: profilePhoto != null
+                          ? NetworkImage(profilePhoto)
+                          : AssetImage('assets/images/profile.png'),
+                    ),
+                  ),
                 ),
+              ),
+              Expanded(
+                flex: 1,
+                child: ListView(children: [
+                  ListTile(
+                    leading: Icon(Icons.info_outline),
+                    title: Text("About Us"),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AboutUs()));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.power_settings_new),
+                    title: Text("LogOut"),
+                    onTap: () {
+                      signOutUser()
+                          .then((value) => Navigator.of(context).pop());
+                    },
+                  ),
+                ]),
               )
             ],
           ),

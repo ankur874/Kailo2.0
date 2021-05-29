@@ -76,9 +76,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                           heightFactor: 1,
                           alignment: Alignment.center,
                           child: Text(
-
                             name == null ? " " : name,
-
                             style: TextStyle(
                               fontSize: 40.0,
                             ),
@@ -88,9 +86,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                           heightFactor: 6.0,
                           alignment: Alignment.center,
                           child: Text(
-
                             age == null ? 'Age' : "Age: ${age}",
-
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
@@ -127,7 +123,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                                           side: BorderSide(
                                               color: Colors.purple)))),
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>

@@ -173,13 +173,14 @@ class _PostItemState extends State<PostItem> {
                           height: 10,
                           width: 10,
                           decoration: BoxDecoration(
-                            boxShadow: [
+                          boxShadow: [
                               BoxShadow(
                                   color: Colors.greenAccent, blurRadius: 5.0)
                             ],
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.green,
                           ),
+
                         ),
                       ],
                     ),
