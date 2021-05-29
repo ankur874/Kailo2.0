@@ -104,7 +104,7 @@ class _EditUserSettingsState extends State<EditUserSettings> {
         "bio": bioController.text,
       });
     }
-    if (dateOfbirthController.text != null) {
+    if (dateOfbirthController != null) {
       FirebaseFirestore.instance.collection("users").doc(user.uid).update({
         "age": int.parse(dateOfbirthController.text),
       });
@@ -180,8 +180,10 @@ class _EditUserSettingsState extends State<EditUserSettings> {
                     fontWeight: FontWeight.w500, color: Colors.black87),
               ),
               TextField(
+                maxLength: 15,
                 controller: nameController,
-                decoration: ktextFieldDecoration("Alice Stark"),
+                decoration: ktextFieldDecoration("Alice Stark")
+                    .copyWith(counterText: ""),
               ),
               SizedBox(height: 30.0),
               Text(
@@ -190,8 +192,11 @@ class _EditUserSettingsState extends State<EditUserSettings> {
                     fontWeight: FontWeight.w500, color: Colors.black87),
               ),
               TextField(
+                maxLength: 3,
+                keyboardType: TextInputType.number,
                 controller: dateOfbirthController,
-                decoration: ktextFieldDecoration("Enter Age"),
+                decoration:
+                    ktextFieldDecoration("Enter Age").copyWith(counterText: ""),
               ),
               SizedBox(height: 30.0),
               Text(
@@ -202,6 +207,7 @@ class _EditUserSettingsState extends State<EditUserSettings> {
               Container(
                 height: maxLines * 24.0,
                 child: TextField(
+                  maxLength: 50,
                   controller: bioController,
                   maxLines: maxLines,
                   decoration: ktextFieldDecoration("").copyWith(

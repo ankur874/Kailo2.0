@@ -28,7 +28,7 @@ class PostItem extends StatefulWidget {
 
 class _PostItemState extends State<PostItem> {
   String statusOfPostItem;
-  bool isShared = false;
+ 
   void addPostToDataBase(BuildContext context) async {
     VoidCallback continueCallBack = () async {
       User user = await getCurrentUser();
@@ -173,15 +173,14 @@ class _PostItemState extends State<PostItem> {
                           height: 10,
                           width: 10,
                           decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: isShared == true
-                                        ? Colors.greenAccent
-                                        : Colors.redAccent,
-                                    blurRadius: 5.0)
-                              ],
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.green),
+                          boxShadow: [
+                              BoxShadow(
+                                  color: Colors.greenAccent, blurRadius: 5.0)
+                            ],
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.green,
+                          ),
+
                         ),
                       ],
                     ),
