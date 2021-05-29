@@ -103,7 +103,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             IconButton(
                               icon: FaIcon(FontAwesomeIcons.bars),
                               onPressed: () =>
-                                  Scaffold.of(context).openDrawer(),
+                                  Scaffold.of(context).openEndDrawer(),
                             ),
                           ],
                         ),

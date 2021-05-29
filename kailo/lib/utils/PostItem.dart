@@ -44,7 +44,7 @@ class _PostItemState extends State<PostItem> {
           .collection("feed")
           .doc(DateTime.now().toString())
           .set(post.toMap(post));
-      
+
       Navigator.of(context, rootNavigator: true).pop();
 
       // code on continue comes here
@@ -173,16 +173,15 @@ class _PostItemState extends State<PostItem> {
                           height: 10,
                           width: 10,
                           decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: isShared == true
-                                      ? Colors.greenAccent
-                                      : Colors.redAccent,
-                                  blurRadius: 5.0)
-                            ],
-                            borderRadius: BorderRadius.circular(100),
-                            color: isShared == true ? Colors.green : Colors.red,
-                          ),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: isShared == true
+                                        ? Colors.greenAccent
+                                        : Colors.redAccent,
+                                    blurRadius: 5.0)
+                              ],
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.green),
                         ),
                       ],
                     ),
