@@ -60,6 +60,34 @@ class _PostItemState extends State<PostItem> {
     );
   }
 
+  String monthConvertor(String curr) {
+    if (curr == "01") {
+      return "Jan";
+    } else if (curr == "02") {
+      return "Feb";
+    } else if (curr == "03") {
+      return "Mar";
+    } else if (curr == "04") {
+      return "Apr";
+    } else if (curr == "05") {
+      return "May";
+    } else if (curr == "06") {
+      return "June";
+    } else if (curr == "07") {
+      return "July";
+    } else if (curr == "08") {
+      return "Aug";
+    } else if (curr == "09") {
+      return "Sept";
+    } else if (curr == "10") {
+      return "Oct";
+    } else if (curr == "11") {
+      return "Nov";
+    } else if (curr == "12") {
+      return "Dec";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -82,14 +110,15 @@ class _PostItemState extends State<PostItem> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.time.toString().split(" ")[0],
+                    widget.time.toString().split(" ")[1].split(".")[0],
                     style: TextStyle(
                         fontSize: 10.0,
                         fontStyle: FontStyle.italic,
                         color: Colors.white70),
                   ),
                   Text(
-                    "May",
+                    monthConvertor(
+                        widget.time.toString().split(" ")[0].split("-")[1]),
                     style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,

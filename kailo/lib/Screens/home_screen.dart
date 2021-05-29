@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print("----------------------------------------------------");
     if (pageIndex < 2.0) {
       return FloatingActionButton(
-        onPressed: () => Navigator.push(
+        onPressed: () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (conext) => AddActivity())),
         child: const FaIcon(FontAwesomeIcons.pen),
         backgroundColor: Colors.purple[400],

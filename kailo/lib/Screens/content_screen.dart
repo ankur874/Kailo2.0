@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:kailo/Screens/home_screen.dart';
 import 'package:kailo/models/PostModel.dart';
 import 'package:kailo/resources/authentication.dart';
 
@@ -71,7 +72,9 @@ class _ContentScreenState extends State<ContentScreen> {
                             color: Colors.white,
                             iconSize: 35,
                             icon: Icon(Icons.arrow_back),
-                            onPressed: () => Navigator.pop(context)),
+                            onPressed: () => Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                                    builder: (context) => HomeScreen()))),
                       ),
                     ],
                   ),
@@ -85,7 +88,7 @@ class _ContentScreenState extends State<ContentScreen> {
                         hoverColor: Colors.white,
                         fillColor: Colors.deepPurpleAccent[100],
                         filled: true,
-                        hintText: "Enter the title of you story",
+                        hintText: "Highlights Of Your Day",
                         hintStyle: TextStyle(fontSize: 22, color: Colors.white),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
@@ -139,7 +142,9 @@ class _ContentScreenState extends State<ContentScreen> {
                             });
                             addTo(_titleController.text, _content, feeling);
 
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius:

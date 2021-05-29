@@ -14,11 +14,13 @@ class _UserProfileState extends State<UserProfile> {
   PageController _userSettingsPageController = new PageController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Expanded(
+
             child: Container(
               margin: EdgeInsets.fromLTRB(0, 60, 0, 0),
               padding: EdgeInsets.all(3.0),
@@ -39,6 +41,7 @@ class _UserProfileState extends State<UserProfile> {
                         selectedSettingType = userSettingsOrHealth.profile;
                       });
                     },
+
                     child: Container(
                       margin: EdgeInsets.only(right: 14),
                       width: MediaQuery.of(context).size.width / 2.3,
@@ -56,7 +59,7 @@ class _UserProfileState extends State<UserProfile> {
                                       userSettingsOrHealth.profile
                                   ? Colors.white
                                   : Colors.black),
-                        ),
+        ),
                       ),
                     ),
                   ),
@@ -69,6 +72,7 @@ class _UserProfileState extends State<UserProfile> {
                         selectedSettingType = userSettingsOrHealth.health;
                       });
                     },
+
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.3,
                       decoration: BoxDecoration(
@@ -86,21 +90,22 @@ class _UserProfileState extends State<UserProfile> {
                                 ? Colors.white
                                 : Colors.black),
                       )),
+
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          Expanded(
-            child: PageView(
-              physics: NeverScrollableScrollPhysics(),
-              controller: _userSettingsPageController,
-              children: [ViewUserSettings(), MyHealth()],
-            ),
+        ),
+        Expanded(
+          child: PageView(
+            physics: NeverScrollableScrollPhysics(),
+            controller: _userSettingsPageController,
+            children: [ViewUserSettings(), MyHealth()],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

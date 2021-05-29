@@ -37,6 +37,8 @@ class _FeedScreenState extends State<FeedScreen> {
       print(feeds.length);
     });
     this.setState(() {
+      List<PostModel> newFeeds = new List.from(feeds.reversed);
+      feeds = newFeeds;
       isLoading = false;
     });
   }
