@@ -28,28 +28,50 @@ class _HomeScreenState extends State<HomeScreen> {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     return MaterialApp(
       home: Scaffold(
-        drawer: new Drawer(
-          child: new ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              SizedBox(
-                height: 60,
-              ),
-              ListTile(
-                title: Text('About Us'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutUs()));
-                },
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              ListTile(
-                title: Text('Logout'),
-                onTap: () => signOutUser().then(
-                  (value) => Navigator.pop(context),
+
+        endDrawer: Drawer(
+        child: Column(
+            children: [
+              Expanded(
+                flex: 0,
+                child: Container(
+                  child: UserAccountsDrawerHeader(
+                    accountName: Text("Ashish Rawat"),
+                    accountEmail: Text("ashishrawat2911@gmail.com"),
+                    currentAccountPicture: CircleAvatar(
+                      radius: 250.0,
+                      backgroundColor:
+                          Theme.of(context).platform == TargetPlatform.iOS
+                              ? Colors.blue
+                              : Colors.white,
+                      child: Text(
+                        "A",
+                        style: TextStyle(fontSize: 40.0),
+                      ),
+                    ),
+                  ),
                 ),
+              ),
+              Expanded(
+                flex: 1,
+                child: ListView(
+                  children: [
+                  ListTile(
+                    leading: Icon(Icons.info_outline),
+                    title: Text("About Us"),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.power_settings_new),
+                    title: Text("LogOut"),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ]),
+
               )
             ],
           ),
