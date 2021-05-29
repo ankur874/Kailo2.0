@@ -72,6 +72,7 @@ class _MyHealthState extends State<MyHealth> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: prevResult.length,
+                  reverse: true,
                   itemBuilder: (context, index) {
                     TestModel test = prevResult[index];
                     index -= 1;
@@ -82,10 +83,10 @@ class _MyHealthState extends State<MyHealth> {
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: test.result >= 0 && test.result <= 13
-                              ? Colors.green.shade300
+                              ? Colors.green.shade400
                               : test.result > 13 && test.result < 27
-                                  ? Colors.yellow.shade300
-                                  : Colors.red.shade300,
+                                  ? Colors.amber.shade500
+                                  : Colors.red.shade400,
                           borderRadius: BorderRadius.circular(5.0),
                           boxShadow: [
                             BoxShadow(color: Colors.grey, blurRadius: 3)

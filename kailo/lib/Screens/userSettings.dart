@@ -24,7 +24,7 @@ class _UserProfileState extends State<UserProfile> {
               padding: EdgeInsets.all(3.0),
               height: 60.0,
               decoration: BoxDecoration(
-                color: Colors.grey.shade400,
+                color: Colors.grey.shade300,
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Row(

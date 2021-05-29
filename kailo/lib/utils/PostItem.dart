@@ -28,7 +28,7 @@ class PostItem extends StatefulWidget {
 
 class _PostItemState extends State<PostItem> {
   String statusOfPostItem;
-  bool isShared = false;
+ 
   void addPostToDataBase(BuildContext context) async {
     VoidCallback continueCallBack = () async {
       User user = await getCurrentUser();
@@ -44,7 +44,7 @@ class _PostItemState extends State<PostItem> {
           .collection("feed")
           .doc(DateTime.now().toString())
           .set(post.toMap(post));
-      
+
       Navigator.of(context, rootNavigator: true).pop();
 
       // code on continue comes here
@@ -146,13 +146,10 @@ class _PostItemState extends State<PostItem> {
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
-                                  color: isShared == true
-                                      ? Colors.greenAccent
-                                      : Colors.redAccent,
-                                  blurRadius: 5.0)
+                                  color: Colors.greenAccent, blurRadius: 5.0)
                             ],
                             borderRadius: BorderRadius.circular(100),
-                            color: isShared == true ? Colors.green : Colors.red,
+                            color: Colors.green,
                           ),
                         ),
                       ],
