@@ -76,7 +76,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                           heightFactor: 1,
                           alignment: Alignment.center,
                           child: Text(
-                            name == null ? " " : name,
+                            name == null ? "Enter Name " : name,
                             style: TextStyle(
                               fontSize: 40.0,
                             ),
@@ -86,7 +86,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                           heightFactor: 6.0,
                           alignment: Alignment.center,
                           child: Text(
-                            age == null ? 'Age' : "Age: ${age}",
+                            age == null ? 'Age ' : "Age: ${age}",
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
@@ -154,7 +154,7 @@ class _ViewUserSettingsState extends State<ViewUserSettings> {
                             padding: EdgeInsets.all(10.0),
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: Text(
-                              bio == null ? "" : bio,
+                              bio == null ? "Enter Bio" : bio,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 25.0, fontWeight: FontWeight.w300),

@@ -31,8 +31,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         .get();
 
     this.setState(() {
-      if (curr.displayName != null) {
-        name = curr.displayName.split(" ")[0];
+      if (data.data()["name"] != null) {
+        name = data.data()["name"].split(" ")[0];
         profilePhoto = data.data()["profile_photo"];
       } else {
         name = "";

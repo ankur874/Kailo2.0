@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +25,26 @@ class _EditUserSettingsState extends State<EditUserSettings> {
   int maxLines = 5;
   File _image;
   String imageUrl;
+  String prevName;
+  int prevAge;
+
+  Future<void> getPrevDetails() async {
+    try {
+      User user = await getCurrentUser();
+      var data = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+
+      setState(() {
+        prevAge = data.data()["age"];
+        prevName = data.data()["name"];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   final picker = ImagePicker();
   _imgFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -94,12 +113,16 @@ class _EditUserSettingsState extends State<EditUserSettings> {
 
   void editUserDetails() async {
     User user = await getCurrentUser();
-    if (nameController.text != null) {
+    if (nameController != null) {
       FirebaseFirestore.instance.collection("users").doc(user.uid).update({
         "name": nameController.text,
       });
+    } else {
+      FirebaseFirestore.instance.collection("users").doc(user.uid).update({
+        "name": prevName,
+      });
     }
-    if (bioController.text != null) {
+    if (bioController!= null) {
       FirebaseFirestore.instance.collection("users").doc(user.uid).update({
         "bio": bioController.text,
       });
@@ -108,12 +131,22 @@ class _EditUserSettingsState extends State<EditUserSettings> {
       FirebaseFirestore.instance.collection("users").doc(user.uid).update({
         "age": int.parse(dateOfbirthController.text),
       });
+    } else {
+      FirebaseFirestore.instance.collection("users").doc(user.uid).update({
+        "age": prevAge,
+      });
     }
     if (imageUrl != null) {
       FirebaseFirestore.instance.collection("users").doc(user.uid).update({
         "profile_photo": imageUrl,
       });
     }
+  }
+
+  @override
+  void initState() {
+    getPrevDetails();
+    super.initState();
   }
 
   @override
